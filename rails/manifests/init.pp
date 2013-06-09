@@ -1,6 +1,14 @@
 #installing rails
 
 class rails {
+	package{'ruby1.9.3':
+		ensure		=> present
+	}
+
+	package{'build-essential':
+		ensure		=> present
+	}
+
 	package{'rails':
 		ensure		=> present,
 		provider	=> gem
@@ -11,7 +19,7 @@ class rails {
 	}
 
 	package{'sqlite3':
-		ensure 		=> installed,
+		ensure 		=> present,
 		provider	=> gem
 	}
 
@@ -40,5 +48,5 @@ class rails {
 		provider	=> gem
 	}
 
-	Package['rails'] -> Package['libsqlite3-dev'] -> Package['sqlite3'] -> Package['nodejs'] -> Package['mysql-server'] -> Package['mysql-client'] -> Package['libmysql-ruby'] -> Package['libmysqlclient-dev'] -> Package['mysql']
+	Package['ruby1.9.3'] -> Package['build-essential'] -> Package['rails'] -> Package['libsqlite3-dev'] -> Package['sqlite3'] -> Package['nodejs'] -> Package['mysql-server'] -> Package['mysql-client'] -> Package['libmysql-ruby'] -> Package['libmysqlclient-dev'] -> Package['mysql']
 }
