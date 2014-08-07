@@ -17,5 +17,12 @@ class nginx::deploy {
     content => template('nginx/index.html')
   }
 
-  File['nginx config'] -> File['web page']
+  service {'nginx':
+    name    => 'nginx',
+    ensure  => 'running',
+    enable  => 'true',
+    restart => 'true'
+  }
+
+  File['nginx config'] -> File['web page'] -> Service['nginx']
 }
