@@ -24,5 +24,7 @@ class nginx::deploy {
     restart => 'true'
   }
 
-  File['nginx config'] -> File['web page'] -> Service['nginx']
+  notify {'website deployed':}
+
+  File['nginx config'] -> File['web page'] -> Service['nginx'] -> Notify['website deployed']
 }

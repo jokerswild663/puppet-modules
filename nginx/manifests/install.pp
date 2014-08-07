@@ -11,5 +11,7 @@ class nginx::install {
     action => accept
   }
 
-  Package['nginx'] -> Firewall['8888 open-ports']
+  notify {'nginx installed and ports opened':}
+
+  Package['nginx'] -> Firewall['8888 open-ports'] -> Notify['nginx installed and ports opened']
 }
