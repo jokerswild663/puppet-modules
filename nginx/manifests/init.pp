@@ -1,6 +1,8 @@
 #!/usr/bin/puppet
 
 class nginx {
+case $operatingsystem {
+'Centos, Redhat, Fedora': {
   class {"nginx::install":
   }
   
@@ -8,4 +10,6 @@ class nginx {
   }
 
   Class['nginx::install'] -> Class['nginx::deploy']
+}
+}
 }
