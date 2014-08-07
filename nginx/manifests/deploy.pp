@@ -8,4 +8,14 @@ class nginx::deploy {
     group   => 'root',
     content => template('nginx/test.conf')
   }
+
+  file {'web page':
+    path    => '/usr/share/nginx/html/index.html',
+    mode    => '0644',
+    owner   => 'root',
+    group   => 'root',
+    content => template('nginx/index.html')
+  }
+
+  File['nginx config'] -> File['web page']
 }
