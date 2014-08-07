@@ -6,7 +6,7 @@ class nginx::install {
   }
 
   firewall {'8888 open-ports':
-    port => [8888, 3333],
+    port => [8888],
     proto => tcp,
     action => accept
   }
